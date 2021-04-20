@@ -54,15 +54,6 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'nisn' => ['required', 'string', 'max:255'],
             'jk' => ['required', 'string', 'max:255'],
-            'tempat_lahir' => ['required', 'string', 'max:255'],
-            'tanggal_lahir' => ['required', 'date'],
-            'alamat' => ['required', 'string', 'max:255'],
-            'no_hp' => ['required', 'string', 'max:255'],
-            'asal_sekolah' => ['required', 'string', 'max:255'],
-            'tahun_lulus' => ['required', 'string', 'max:255'],
-            'agama' => ['required', 'string', 'max:255'],
-            'jurusan' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -74,6 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($data->all());
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -87,7 +79,7 @@ class RegisterController extends Controller
             'tahun_lulus' => $data['tahun_lulus'],
             'agama' => $data['agama'],
             'jurusan' => $data['jurusan'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['nisn']),
         ]);
     }
 }

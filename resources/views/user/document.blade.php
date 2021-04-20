@@ -41,9 +41,9 @@
                                             <td><img src="http://localhost:8000/image/{{$document->ijazah}}" width="80" height="80"></td>
                                             <td>
                                                 <span class="badge badge-pill badge-primary">
-                                                    @if($document->status == 'diterima')
+                                                    @if($user->status == 'diterima')
                                                         Selamat Anda Diterima di SMK WIKRAMA 1 GARUT
-                                                    @elseif ($document->status == 'ditolak')
+                                                    @elseif ($user->status == 'ditolak')
                                                         Maaf Anda Ditolak di SMK WIKRAMA 1 GARUT
                                                     @else
                                                         Mohon Menunggu !
@@ -51,7 +51,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <a href="#" class="btn btn-warning">Edit</a>
+                                                <a href="/user/edit/{{$document->id}}" class="btn btn-warning">Edit</a>
                                                 <form action="/user/delete/{{$document->id}}" method="post" class="d-inline">
                                                     @method('delete')
                                                     @csrf

@@ -15,6 +15,7 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->string('id_user');
             $table->string('nisn');
             $table->string('kk');
             $table->string('akte');

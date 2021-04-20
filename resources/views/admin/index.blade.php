@@ -46,9 +46,15 @@
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <a href="/admin/terima/{{$usr->id}}" class="btn btn-success">Terima</a>
-                                                    <a href="/admin/tolak/{{$usr->id}}" class="btn btn-danger">Tolak</a>
-                                                    <a href="#" class="btn btn-warning">Detail</a>
+                                                    @if($usr->status == 'belum')
+                                                        <a href="/admin/terima/{{$usr->id}}" class="btn btn-success">Terima</a>
+                                                        <a href="/admin/tolak/{{$usr->id}}" class="btn btn-danger">Tolak</a>
+                                                    @elseif ($usr->status == 'diterima')
+                                                        <a href="/admin/tolak/{{$usr->id}}" class="btn btn-danger">Tolak</a>
+                                                    @elseif ($usr->status == 'ditolak')
+                                                        <a href="/admin/terima/{{$usr->id}}" class="btn btn-success">Terima</a>
+                                                    @endif
+                                                    <a href="/admin/show/{{$usr->id}}" class="btn btn-warning">Detail</a>
                                                 </td>
                                             </tr>
                                             {{-- @endforeach --}}

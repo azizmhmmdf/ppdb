@@ -37,7 +37,8 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <li class=" fa fa-code"></li>
                 </div>
-                <div class="sidebar-brand-text mx-3">SMK WIKRAMA 1 GARUT</div>
+                {{-- <div class="sidebar-brand-text mx-3">SMK WIKRAMA 1 GARUT</div> --}}
+                <img src="http://localhost:8000/image/wk.jpg" width="80" height="80">
             </a>
 
             <!-- Divider -->

@@ -16,13 +16,14 @@ use App\Http\Controllers\AdminController as AC;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Route::group(['middleware' => 'is_admin'], function(){
     Route::get('/admin', [DC::class, 'index'])->name('admin.document');
     Route::get('/admin/terima/{id}',[AC::class, 'terima'])->name('admin.terima');
     Route::get('/admin/tolak/{id}',[AC::class, 'tolak'])->name('admin.tolak');
+    Route::get('/admin/show/{id}', [AC::class, 'show'])->name('admin.show');
 
 });
 

@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->boolean('is_admin')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('nisn');
@@ -27,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('tahun_lulus');
             $table->string('agama');
             $table->string('jurusan');
+            $table->enum('status',['diterima' , 'ditolak' , 'belum'])->default('belum');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -55,7 +55,10 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $document = Document::where('id_user',$id)->first();
+        $admin = User::find($id);
+
+        return view('admin.show', compact('admin', 'document'));
     }
 
     /**
@@ -123,6 +126,12 @@ class AdminController extends Controller
             ]);
         }
         elseif($status == 'diterima')
+        {
+            User::where('id', $id)->update([
+                'status' => 'ditolak'
+            ]);
+        }
+        elseif($status == 'belum')
         {
             User::where('id', $id)->update([
                 'status' => 'ditolak'

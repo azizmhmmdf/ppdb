@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnToUsersTable extends Migration
+class AddColumnToDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('status',['diterima' , 'ditolak' , 'belum'])->default('belum')->after('is_admin');
+        Schema::table('documents', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -25,7 +25,7 @@ class AddColumnToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('documents', function (Blueprint $table) {
             //
         });
     }

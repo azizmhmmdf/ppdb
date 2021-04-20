@@ -80,6 +80,7 @@ class DocumentController extends Controller
         $document->akte = $imgname1;
         $document->skhun = $imgname2;
         $document->ijazah = $imgname3;
+        $document->id_user = Auth::user()->id;
         $document->save();
 
         return redirect()->route('user.document');
@@ -95,6 +96,8 @@ class DocumentController extends Controller
     {
         $user = User::where('nisn', Auth::user()->nisn )->first();
         $document = Document::where('nisn', Auth::user()->nisn)->first();
+
+
         return view('user.document', compact('document', 'user'));
     }
 
@@ -106,7 +109,10 @@ class DocumentController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd(Auth::user()->id);
+        $edit = Document::where('id_user', Auth::user()->id)->first();
+        // dd($edit);
+        return view('user.edit', compact('edit'));
     }
 
     /**
@@ -118,7 +124,7 @@ class DocumentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $update = Document::update($request->all());
     }
 
     /**
