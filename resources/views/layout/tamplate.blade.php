@@ -34,12 +34,14 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <li class=" fa fa-code"></li>
-                </div>
-                {{-- <div class="sidebar-brand-text mx-3">SMK WIKRAMA 1 GARUT</div> --}}
-                <img src="http://localhost:8000/image/wk.jpg" width="80" height="80">
+
+                <img src="http://localhost:8000/image/LOGO KEBANGSAAN.png" width="60" height="60">
             </a>
+            <div class="text-white text-center">
+                <strong>
+                    <p>SMK WIKRAMA 1 GARUT</p>
+                </strong>
+            </div>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -48,7 +50,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('user.create')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Kumpulan Data Peserta</span></a>
+                    <span>Home</span></a>
             </li>
 
             <!-- Divider -->

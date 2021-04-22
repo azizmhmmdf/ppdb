@@ -124,7 +124,34 @@ class DocumentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update = Document::update($request->all());
+        $request->validate([
+            'kk' => 'required|mimes:jpeg,png,jpg,gif,svg',
+            'akte' => 'required|mimes:jpeg,png,jpg,gif,svg',
+            'skhun' => 'required|mimes:jpeg,png,jpg,gif,svg',
+            'ijazah' => 'required|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+
+
+        $imgname = $request->kk->getClientOriginalName();
+        $request->kk->move(public_path('image'), $imgname);
+
+        $imgname1 = $request->akte->getClientOriginalName();
+        $request->akte->move(public_path('image'), $imgname1);
+
+        $imgname2 = $request->skhun->getClientOriginalName();
+        $request->skhun->move(public_path('image'), $imgname2);
+
+        $imgname3 = $request->ijazah->getClientOriginalName();
+        $request->ijazah->move(public_path('image'), $imgname3);
+
+        $document = Document::find($id)->update([
+            'kk' => $imgname,
+            'akte' => $imgname1,
+            'skhun' => $imgname2,
+            'ijazah' => $imgname3,
+        ]);
+        return redirect('/user/document');
     }
 
     /**

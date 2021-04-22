@@ -55,6 +55,10 @@ class AdminController extends Controller
      */
     public function show($id)
     {
+        // if(Document::where('id_user',$id)->first() == null)
+        // {
+        //     $data = Document::onlyTrashed()->get();
+        // }
         $document = Document::where('id_user',$id)->first();
         $admin = User::find($id);
 
@@ -135,6 +139,26 @@ class AdminController extends Controller
         {
             User::where('id', $id)->update([
                 'status' => 'ditolak'
+            ]);
+        }
+        return redirect('/user/create');
+
+    }
+
+    public function batal($id)
+    {
+        $data = User::where('id', $id)->first();
+        $status = $data->status;
+        if($status == 'diterima')
+        {
+            User::where('id', $id)->update([
+                'status' => 'belum'
+            ]);
+        }
+        elseif($status == 'ditolak')
+        {
+            User::where('id', $id)->update([
+                'status' => 'belum'
             ]);
         }
         return redirect('/user/create');

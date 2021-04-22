@@ -1,19 +1,30 @@
 @extends('layouts.app')
+@section('title', 'Register')
+
+
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header text-center mt-5" id="gradient1">
-                    <img src="http://localhost:8000/image/wk.jpg" width="120" height="120" class="text-center">
+            <div class="card mt-4">
+                <div class="card-header gradient text-white" id="gradient1">
+                    <div class="form-row">
+                        <div class="form-group col-md-2 mt-4">
+                            <img src="http://localhost:8000/image/LOGO KEBANGSAAN.png" width="120" height="120" class="text-center">
+                        </div>
+                        <div class="form-group col-md-8 mt-4">
+                            <strong>
+                                <h1 class="font">Form Pendaftaran
+                                    <br>
+                                    PPDB SMK WIKRAMA 1 GARUT 2021
+                                </h1>
+                            </strong>
+                                <p class="font">Silahkan Isi data diri anda pada form berikut ini</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div>
-                    <strong>
-                        <h3>Profil Siswa</h3>
-                    </strong>
-                </div>
                 <div class="card-body mt-4">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf

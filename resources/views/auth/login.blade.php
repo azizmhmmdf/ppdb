@@ -1,25 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="mt-5">
+    <center>
+        <div class="form-group center">
+            <img src="http://localhost:8000/image/LOGO KEBANGSAAN.png" width="120" height="120" >
+        </div>
+    </center>
+</div>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
-                <div class="text-center mt-4">
-                    <img src="http://localhost:8000/image/wk.jpg" width="120" height="120" class="text-center">
-                </div>
-
-
                 <div class="card-body mt-4">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

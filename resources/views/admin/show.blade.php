@@ -55,10 +55,14 @@
                                         <td>{{$admin->tahun_lulus}}</td>
                                         <td>{{$admin->agama}}</td>
                                         <td>{{$admin->jurusan}}</td>
-                                        <td><img src="http://localhost:8000/image/{{$document->kk ? $document->kk : 'not_found.jpg'}}" width="80" height="80"></td>
-                                        <td><img src="http://localhost:8000/image/{{$document->akte ? $document->akte : 'not_found.jpg'}}" width="80" height="80"></td>
-                                        <td><img src="http://localhost:8000/image/{{$document->skhun ? $document->skhun : 'not_found.jpg'}}" width="80" height="80"></td>
-                                        <td><img src="http://localhost:8000/image/{{$document->ijazah ? $document->ijazah : 'not_found.jpg'}}" width="80" height="80"></td>
+                                        @if ($document!='')
+                                            <td><img src="http://localhost:8000/image/{{$document->kk ? $document->kk : 'not_found.jpg'}}" width="80" height="80"></td>
+                                            <td><img src="http://localhost:8000/image/{{$document->akte ? $document->akte : 'not_found.jpg'}}" width="80" height="80"></td>
+                                            <td><img src="http://localhost:8000/image/{{$document->skhun ? $document->skhun : 'not_found.jpg'}}" width="80" height="80"></td>
+                                            <td><img src="http://localhost:8000/image/{{$document->ijazah ? $document->ijazah : 'not_found.jpg'}}" width="80" height="80"></td>
+                                        @else
+                                            <td colspan="4">Data Kosong</td>
+                                        @endif
                                     </tr>
                                 </tbody>
                             </table>

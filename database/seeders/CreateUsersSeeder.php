@@ -29,7 +29,7 @@ class CreateUsersSeeder extends Seeder
                 'agama'=>'islam',
                 'jurusan'=>'rpl',
                 'is_admin'=>'1',
-                'password'=> bcrypt('12345678'),
+                'password'=> bcrypt('00000000'),
 
             ],
         ];
