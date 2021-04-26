@@ -40,15 +40,17 @@
                                             <td><img src="http://localhost:8000/image/{{$document->skhun}}" width="80" height="80"></td>
                                             <td><img src="http://localhost:8000/image/{{$document->ijazah}}" width="80" height="80"></td>
                                             <td>
-                                                <span class="badge badge-pill badge-primary">
-                                                    @if($user->status == 'diterima')
+                                                @if($user->status == 'diterima')
+                                                    <span class="badge badge-pill badge-primary">
                                                         Selamat Anda Diterima di SMK WIKRAMA 1 GARUT
+                                                    </span>
                                                     @elseif ($user->status == 'ditolak')
+                                                    <span class="badge badge-pill badge-danger">
                                                         Maaf Anda Ditolak di SMK WIKRAMA 1 GARUT
+                                                    </span>
                                                     @else
                                                         Tunggu Konfirmasi !
                                                     @endif
-                                                </span>
                                             </td>
                                             <td>
                                                 <a href="/user/edit/{{$document->id}}" class="btn btn-warning">Edit</a>

@@ -143,7 +143,7 @@ class AdminController extends Controller
 
     public function batal(Request $request, $id)
     {
-        dd($id);
+
 
 
         $catatan = User::where('id', $id)->update([
