@@ -23,7 +23,16 @@
 
     <!-- Custom styles for this page -->
     <link href={{asset('vendor/datatables/dataTables.bootstrap4.min.css')}} rel="stylesheet">
+    <style>
+        .bg-gradient {
+            background: linear-gradient(90deg, #022ff8 0%, #9489f8 100%);
+        }
 
+        .font {
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+     </style>
 </head>
 
 <body id="page-top">
@@ -31,7 +40,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
 

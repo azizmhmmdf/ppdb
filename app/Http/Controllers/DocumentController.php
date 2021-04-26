@@ -24,10 +24,6 @@ class DocumentController extends Controller
     {
 
         $data = Document::where('nisn', Auth::user()->nisn);
-        // if(Auth::user()->is_admin == 1)
-        // {
-        //     return view('admin.index', compact('data'));
-        // }
         return view('user.document', compact('data'));
     }
 
@@ -38,9 +34,9 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        $user = DB::select('select * from users where id != 1');
-        $data = Document::all();
         if(Auth::user()->is_admin == 1){
+            $data = Document::all();
+            $user = DB::select('select * from users where id != 1');
             return view('admin.index', compact('data', 'user'));
         }
         return view('user.create');
@@ -131,19 +127,37 @@ class DocumentController extends Controller
             'ijazah' => 'required|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
+        // $cek = Document::find($id);
+        // if($cek->kk != null)
+        // {
+            $imgname = $request->kk->getClientOriginalName();
+            $request->kk->move(public_path('image'), $imgname);
+        // }else{
+        //     $request->kk;
+        // }
 
+        // if($cek->akte != null)
+        // {
+            $imgname1 = $request->akte->getClientOriginalName();
+            $request->akte->move(public_path('image'), $imgname1);
+        // }else{
+        //     $request->akte;
+        // }
 
-        $imgname = $request->kk->getClientOriginalName();
-        $request->kk->move(public_path('image'), $imgname);
+        // if($cek->skhun != null)
+        // {
+            $imgname2 = $request->skhun->getClientOriginalName();
+            $request->skhun->move(public_path('image'), $imgname2);
+        // }else{
+        //     $request->skhun;
+        // }
 
-        $imgname1 = $request->akte->getClientOriginalName();
-        $request->akte->move(public_path('image'), $imgname1);
-
-        $imgname2 = $request->skhun->getClientOriginalName();
-        $request->skhun->move(public_path('image'), $imgname2);
-
-        $imgname3 = $request->ijazah->getClientOriginalName();
-        $request->ijazah->move(public_path('image'), $imgname3);
+        // if($cek->ijazah != null){
+            $imgname3 = $request->ijazah->getClientOriginalName();
+            $request->ijazah->move(public_path('image'), $imgname3);
+        // }else{
+        //     $request->ijazah;
+        // }
 
         $document = Document::find($id)->update([
             'kk' => $imgname,

@@ -8,17 +8,32 @@
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Documen Peserta</h6>
-                        <a href="/user/create" class="btn btn-primary float-right">Kembali</a>
-                    </div>
-                    @if (session('status'))
+                    <div class="card shadow mb-4">
+                        <div class="card-header bg-gradient text-white" id="gradient1">
+                            <div class="form-row">
+                                <div class="form-group col-md-2 mt-4">
+                                    <img src="{{asset('image/LOGO KEBANGSAAN.png')}}" width="130" height="130" class="text-center ml-5">
+                                </div>
+                                <div class="form-group col-md-9 mt-5">
+                                    <strong>
+                                        <h1 class="font">Data {{$admin->name}}
+                                            <br>
+                                            PPDB SMK WIKRAMA 1 GARUT 2021
+                                        </h1>
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="/user/create" class="btn btn-primary ml-3 mt-2">Kembali</a>
+                        </div>
+                        @if (session('status'))
                         <div class="alert alert-success">
                             {{session('status')}}
                         </div>
-                    @endif
+                        @endif
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive mt-2">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr class="text-center">
@@ -56,10 +71,10 @@
                                         <td>{{$admin->agama}}</td>
                                         <td>{{$admin->jurusan}}</td>
                                         @if ($document!='')
-                                            <td><img src="http://localhost:8000/image/{{$document->kk ? $document->kk : 'not_found.jpg'}}" width="80" height="80"></td>
-                                            <td><img src="http://localhost:8000/image/{{$document->akte ? $document->akte : 'not_found.jpg'}}" width="80" height="80"></td>
-                                            <td><img src="http://localhost:8000/image/{{$document->skhun ? $document->skhun : 'not_found.jpg'}}" width="80" height="80"></td>
-                                            <td><img src="http://localhost:8000/image/{{$document->ijazah ? $document->ijazah : 'not_found.jpg'}}" width="80" height="80"></td>
+                                            <td><img src="{{asset('image/'. $document->kk)}}" width="80" height="80"></td>
+                                            <td><img src="{{asset('image/'. $document->akte)}}" width="80" height="80"></td>
+                                            <td><img src="{{asset('image/'. $document->skhun)}}" width="80" height="80"></td>
+                                            <td><img src="{{asset('image/'. $document->ijazah)}}" width="80" height="80"></td>
                                         @else
                                             <td colspan="4">Data Kosong</td>
                                         @endif

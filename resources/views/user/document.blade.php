@@ -46,7 +46,7 @@
                                                     @elseif ($user->status == 'ditolak')
                                                         Maaf Anda Ditolak di SMK WIKRAMA 1 GARUT
                                                     @else
-                                                        Mohon Menunggu !
+                                                        Tunggu Konfirmasi !
                                                     @endif
                                                 </span>
                                             </td>

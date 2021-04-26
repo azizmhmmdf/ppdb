@@ -29,6 +29,7 @@ class User extends Authenticatable
         'tahun_lulus',
         'agama',
         'jurusan',
+        'catatan',
         'password',
         'is_admin',
     ];
