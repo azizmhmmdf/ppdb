@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Document;
 
 class User extends Authenticatable
 {
@@ -30,6 +30,7 @@ class User extends Authenticatable
         'agama',
         'jurusan',
         'catatan',
+        'tanggal_wawancara',
         'password',
         'is_admin',
     ];
@@ -52,4 +53,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function document()
+    {
+        return $this->hasOne(Document::class, 'id_user', 'id');
+    }
 }

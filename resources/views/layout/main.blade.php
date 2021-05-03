@@ -35,7 +35,7 @@
                         </li>
                     @endif
 
-                    <li class="nav-item dropdown no-arrow">
+                    <li class="nav-item dropdown no-arrow  ms-auto">
                         <a class="nav-link dropdown-toggle" align="right" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }}
                         </a>

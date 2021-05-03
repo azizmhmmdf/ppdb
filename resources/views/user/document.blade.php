@@ -54,6 +54,7 @@
                                             </td>
                                             <td>
                                                 <a href="/user/edit/{{$document->id}}" class="btn btn-warning">Edit</a>
+                                                <a href="/user/informasi/{{$document->id}}" class="btn btn-primary">informasi</a>
                                                 <form action="/user/delete/{{$document->id}}" method="post" class="d-inline">
                                                     @method('delete')
                                                     @csrf
@@ -61,9 +62,10 @@
                                                 </form>
                                             </td>
                                         @else
-                                            <td colspan="6">
+                                            <td colspan="7">
                                                 {{"Data Kosong"}}
                                             </td>
+
                                         @endif
                                     </tr>
                                 </tbody>

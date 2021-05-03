@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('jurusan');
             $table->enum('status',['diterima' , 'ditolak' , 'belum'])->default('belum');
             $table->string('catatan')->nullable();
+            $table->date('tanggal_wawancara')->Date('d-f-y')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

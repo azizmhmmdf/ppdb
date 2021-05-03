@@ -1,23 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.bootstrap')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+{{-- jumbotron --}}
+{{-- <section class="jumbotron">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        <img src="{{asset('image/wikrama1.jpg')}}" width="1000" height="1000">
+</section> --}}
+{{-- akhir jumbotron --}}
 @endsection

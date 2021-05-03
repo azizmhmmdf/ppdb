@@ -35,9 +35,9 @@ class DocumentController extends Controller
     public function create()
     {
         if(Auth::user()->is_admin == 1){
-            $data = Document::all();
-            $user = DB::select('select * from users where id != 1');
-            return view('admin.index', compact('data', 'user'));
+            // $document = Document::where('id_user', Auth::user()->id)->first();
+            $user = User::where('id','!=','1')->get();
+            return view('admin.index', compact('user'));
         }
         return view('user.create');
     }
@@ -120,52 +120,43 @@ class DocumentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'kk' => 'required|mimes:jpeg,png,jpg,gif,svg',
-            'akte' => 'required|mimes:jpeg,png,jpg,gif,svg',
-            'skhun' => 'required|mimes:jpeg,png,jpg,gif,svg',
-            'ijazah' => 'required|mimes:jpeg,png,jpg,gif,svg',
-        ]);
-
-        // $cek = Document::find($id);
-        // if($cek->kk != null)
-        // {
+        $data = Document::where('nisn', Auth::user()->nisn)->first();
+        if ($request->kk != NULL) {
             $imgname = $request->kk->getClientOriginalName();
             $request->kk->move(public_path('image'), $imgname);
-        // }else{
-        //     $request->kk;
-        // }
+        }else{
+            $imgname = $data->kk;
+        }
 
-        // if($cek->akte != null)
-        // {
+        if ($request->akte != NULL) {
             $imgname1 = $request->akte->getClientOriginalName();
             $request->akte->move(public_path('image'), $imgname1);
-        // }else{
-        //     $request->akte;
-        // }
+        }else{
+            $imgname1 = $data->akte;
+        }
 
-        // if($cek->skhun != null)
-        // {
+        if ($request->skhun != NULL) {
             $imgname2 = $request->skhun->getClientOriginalName();
             $request->skhun->move(public_path('image'), $imgname2);
-        // }else{
-        //     $request->skhun;
-        // }
+        }else{
+            $imgname2 = $data->skhun;
+        }
 
-        // if($cek->ijazah != null){
+        if ($request->ijazah != NULL) {
             $imgname3 = $request->ijazah->getClientOriginalName();
             $request->ijazah->move(public_path('image'), $imgname3);
-        // }else{
-        //     $request->ijazah;
-        // }
+        }else{
+            $imgname3 = $data->ijazah;
+        }
 
         $document = Document::find($id)->update([
+            'nisn' => $data->nisn,
             'kk' => $imgname,
             'akte' => $imgname1,
             'skhun' => $imgname2,
             'ijazah' => $imgname3,
         ]);
-        return redirect('/user/document');
+        return redirect('/user/edit/' . $data->id);
     }
 
     /**
@@ -182,5 +173,12 @@ class DocumentController extends Controller
             return redirect('/user/create');
         }
         return redirect('/user/document');
+    }
+
+    public function informasi()
+    {
+        $informasi =  User::where('nisn', Auth::user()->nisn )->first();
+        return view('user.informasi', compact('informasi'));
+
     }
 }

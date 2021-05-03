@@ -95,8 +95,13 @@ class AdminController extends Controller
         //
     }
 
-    public function terima($id)
+    public function terima(Request $request, $id)
     {
+
+        $tanggal_wawancara = User::where('id', $id)->update([
+            'tanggal_wawancara' => $request->tanggal_wawancara
+        ]);
+
         $data = User::where('id', $id)->first();
         $status = $data->status;
         if($status == 'belum')
