@@ -8,6 +8,20 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+        <style>
+            .gradient {
+                background: linear-gradient(90deg, #fa2407 0%, #f5862c 100%);
+            }
+
+
+
+            .font {
+                font-family: sans-serif;
+                font-weight: bold;
+            }
+
+        </style>
+
         <title>@yield('title')</title>
     </head>
     <body>

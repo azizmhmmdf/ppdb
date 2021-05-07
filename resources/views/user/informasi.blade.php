@@ -6,23 +6,36 @@
 <div class="row">
         <div class="col-md-12 mt-3">
             <div class="container-fluid">
-
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Documen Peserta</h6>
-                    </div>
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{session('status')}}
+                <div class="card-header gradient text-white" id="gradient1">
+                    <div class="form-row">
+                        <div class="form-group col-md-2 mt-4 ml-3"></div>
+                            <div class="form-group col-md-9 mt-4">
+                                @if($informasi->status == 'diterima')
+                                    <strong>
+                                        <h1 class="font text-center">
+                                            SELAMAT ANDA LOLOS TAHAP AWAL
+                                            <br>
+                                            BERIKUT JADWAL WAWANCARA {{ date('d, D M Y', strtotime($informasi->tanggal_wawancara)) }}
+                                        </h1>
+                                    </strong>
+                                @elseif ($informasi->status == 'ditolak')
+                                    <strong>
+                                        <h1 class="font text-center">
+                                            MAAF ANDA TIDAK LOLOS DI TAHAP AWAL INI
+                                            <br>
+                                            SILAHKAN CEK  DOKUMEN ANDA SUDAH LENGKAP ATAU BELUM
+                                        </h1>
+                                    </strong>
+                                @else
+                                    <strong>
+                                        <h1 class="font text-center">
+                                            BELUM ADA INFORMASI DARI PIHAK SEKOLAH
+                                        </h1>
+                                    </strong>
+                                @endif
+                            </div>
                         </div>
-                    @endif
-
-                    @if($informasi->status == 'diterima')
-                        SELAMAT ANDA LOLOS TAHAP AWAL , BERIKUT JADWAL WAWANCARA {{$informasi->tanggal_wawancara}}
-                    @elseif ($informasi->status == 'ditolak')
-                        MAAF ANDA TIDAK LOLOS DI TAHAP AWAL INI , SILAHKAN CEK  DOKUMEN ANDA SUDAH LENGKAP ATAU BELUM
-                    @endif
+                    </div>
                 </div>
             </div>
             <!-- /.container-fluid -->

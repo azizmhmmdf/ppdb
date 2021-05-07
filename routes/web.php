@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DocumentController as DC;
 use App\Http\Controllers\AdminController as AC;
+use App\Http\Controllers\PendaftaranController as PC;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,18 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'is_admin'], function(){
     Route::get('/admin', [DC::class, 'index'])->name('admin.document');
-    Route::patch('/admin/terima/{id}',[AC::class, 'terima'])->name('admin.terima');
+
+    Route::get('/admin/terima/{id}',[AC::class, 'terima'])->name('admin.terima');
+    Route::patch('/admin/verifiksi/{id}',[AC::class, 'verifikasi'])->name('admin.verifikasi');
     Route::get('/admin/tolak/{id}',[AC::class, 'tolak'])->name('admin.tolak');
     Route::patch('/admin/batal/{id}',[AC::class, 'batal'])->name('admin.batal');
     Route::get('/admin/show/{id}', [AC::class, 'show'])->name('admin.show');
+    Route::get('/admin/wawancara', [AC::class, 'wawancara'])->name('admin.wawancara');
+    Route::post('/admin/wawancara/store', [AC::class, 'store'])->name('admin.wawancara.store');
+
+    Route::get('/admin/peserta/diterima', [PC::class, 'diterima'])->name('peserta.diterima');
+    Route::get('/admin/peserta/ditolak', [PC::class, 'ditolak'])->name('peserta.ditolak');
+    Route::get('/admin/peserta/diverifikasi', [PC::class, 'diverifikasi'])->name('peserta.diverifikasi');
 
 });
 

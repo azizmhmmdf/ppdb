@@ -36,7 +36,7 @@ class DocumentController extends Controller
     {
         if(Auth::user()->is_admin == 1){
             // $document = Document::where('id_user', Auth::user()->id)->first();
-            $user = User::where('id','!=','1')->get();
+            $user = User::where('status', 'belum')->where('id', '!=', '1')->get();
             return view('admin.index', compact('user'));
         }
         return view('user.create');

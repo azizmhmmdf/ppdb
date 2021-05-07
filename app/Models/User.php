@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Document::class, 'id_user', 'id');
     }
+
+    public function wawancara()
+    {
+        return $this->hasOne(wawancara::class, 'id_wawancara', 'id');
+    }
 }

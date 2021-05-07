@@ -44,7 +44,12 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            $request->all() => 'required'
+        ]);
+
+        $wawancara = wawancara::create($request->all());
+        return redirect('admin/peserta/diverifikasi');
     }
 
     /**
@@ -95,12 +100,39 @@ class AdminController extends Controller
         //
     }
 
-    public function terima(Request $request, $id)
+    public function verifikasi(Request $request, $id)
     {
 
         $tanggal_wawancara = User::where('id', $id)->update([
             'tanggal_wawancara' => $request->tanggal_wawancara
         ]);
+
+        $data = User::where('id', $id)->first();
+        $status = $data->status;
+        if($status == 'belum')
+        {
+            User::where('id', $id)->update([
+                'status' => 'diverifikasi'
+            ]);
+        }
+        elseif($status == 'diterima')
+        {
+            User::where('id', $id)->update([
+                'status' => 'diverifikasi'
+            ]);
+        }
+        elseif($status == 'ditolak')
+        {
+            User::where('id', $id)->update([
+                'status' => 'diverifikasi'
+            ]);
+        }
+        return redirect()->route('user.create');
+
+    }
+
+    public function terima(Request $request, $id)
+    {
 
         $data = User::where('id', $id)->first();
         $status = $data->status;
@@ -116,40 +148,44 @@ class AdminController extends Controller
                 'status' => 'diterima'
             ]);
         }
-        return redirect('/user/create');
+        elseif($status == 'diverifikasi')
+        {
+            User::where('id', $id)->update([
+                'status' => 'diterima'
+            ]);
+        }
+        return redirect('/admin/peserta/diverifikasi');
 
     }
 
-    public function tolak($id)
-    {
-        $data = User::where('id', $id)->first();
-        $status = $data->status;
-        if($status == 'diterima')
-        {
-            User::where('id', $id)->update([
-                'status' => 'ditolak'
-            ]);
-        }
-        elseif($status == 'diterima')
-        {
-            User::where('id', $id)->update([
-                'status' => 'ditolak'
-            ]);
-        }
-        elseif($status == 'belum')
-        {
-            User::where('id', $id)->update([
-                'status' => 'ditolak'
-            ]);
-        }
-        return redirect('/user/create');
+    // public function tolak($id)
+    // {
+    //     $data = User::where('id', $id)->first();
+    //     $status = $data->status;
+    //     if($status == 'diterima')
+    //     {
+    //         User::where('id', $id)->update([
+    //             'status' => 'ditolak'
+    //         ]);
+    //     }
+    //     elseif($status == 'diterima')
+    //     {
+    //         User::where('id', $id)->update([
+    //             'status' => 'ditolak'
+    //         ]);
+    //     }
+    //     elseif($status == 'belum')
+    //     {
+    //         User::where('id', $id)->update([
+    //             'status' => 'ditolak'
+    //         ]);
+    //     }
+    //     return redirect('/user/create');
 
-    }
+    // }
 
     public function batal(Request $request, $id)
     {
-
-
 
         $catatan = User::where('id', $id)->update([
             'catatan' => $request->catatan
@@ -160,7 +196,7 @@ class AdminController extends Controller
         if($status == 'diterima')
         {
             User::where('id', $id)->update([
-                'status' => 'ditolak'
+                'status' => 'belum'
             ]);
         }
         elseif($status == 'belum')
@@ -169,8 +205,40 @@ class AdminController extends Controller
                 'status' => 'ditolak'
             ]);
         }
-        return redirect('/user/create');
+        elseif($status == 'diverifikasi')
+        {
+            User::where('id', $id)->update([
+                'status' => 'ditolak'
+            ]);
+        }
+        elseif($status == 'ditolak')
+        {
+            User::where('id', $id)->update([
+                'status' => 'belum'
+            ]);
+        }
 
+        if($status == 'belum')
+        {
+            return redirect('/user/create');
+        }
+        elseif($status == 'diterima')
+        {
+            return redirect('/admin/peserta/diterima');
+        }
+        elseif($status == 'ditolak')
+        {
+            return redirect('/admin/peserta/ditolak');
+        }
+        elseif($status == 'diverifikasi')
+        {
+            return redirect('/admin/peserta/diverifikasi');
+        }
 
+    }
+
+    public function wawancara()
+    {
+        return view('admin.wawancara');
     }
 }

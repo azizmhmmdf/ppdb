@@ -41,25 +41,38 @@
                                             <td><img src="http://localhost:8000/image/{{$document->ijazah}}" width="80" height="80"></td>
                                             <td>
                                                 @if($user->status == 'diterima')
-                                                    <span class="badge badge-pill badge-primary">
-                                                        Selamat Anda Diterima di SMK WIKRAMA 1 GARUT
+                                                    <span class="badge badge-pill badge-success">
+                                                        SELAMAT ANDA DITERIMA DI SMK WIKRAMA 1 GARUT
                                                     </span>
-                                                    @elseif ($user->status == 'ditolak')
+                                                @elseif ($user->status == 'ditolak')
                                                     <span class="badge badge-pill badge-danger">
-                                                        Maaf Anda Ditolak di SMK WIKRAMA 1 GARUT
+                                                            MAAF ANDA DITOLAK DI SMK WIKRAMA 1 GARUT
                                                     </span>
-                                                    @else
+                                                @elseif ($user->status == 'diverifikasi')
+                                                    <span class="badge badge-pill badge-primary">
+                                                        SELAMAT ANDA LOLOS KE TAHAP 1
+                                                    </span>
+                                                @else
                                                         Tunggu Konfirmasi !
-                                                    @endif
+                                                @endif
                                             </td>
                                             <td>
-                                                <a href="/user/edit/{{$document->id}}" class="btn btn-warning">Edit</a>
-                                                <a href="/user/informasi/{{$document->id}}" class="btn btn-primary">informasi</a>
-                                                <form action="/user/delete/{{$document->id}}" method="post" class="d-inline">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger ">Hapus</button>
-                                                </form>
+                                                @if ($user->status == 'diverifikasi')
+                                                    <a href="/user/edit/{{$document->id}}" class="btn btn-warning">Edit</a>
+                                                    <a href="/user/informasi/{{$document->id}}" class="btn btn-primary">informasi</a>
+                                                    <form action="/user/delete/{{$document->id}}" method="post" class="d-inline">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger ">Hapus</button>
+                                                    </form>
+                                                @else
+                                                    <a href="/user/edit/{{$document->id}}" class="btn btn-warning">Edit</a>
+                                                    <form action="/user/delete/{{$document->id}}" method="post" class="d-inline">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger ">Hapus</button>
+                                                    </form>
+                                                @endif
                                             </td>
                                         @else
                                             <td colspan="7">
