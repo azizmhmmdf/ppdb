@@ -23,12 +23,12 @@ Route::get('/', function () {
 Route::group(['middleware' => 'is_admin'], function(){
     Route::get('/admin', [DC::class, 'index'])->name('admin.document');
 
-    Route::get('/admin/terima/{id}',[AC::class, 'terima'])->name('admin.terima');
+    Route::post('/admin/terima/{id}',[AC::class, 'terima'])->name('admin.terima');
     Route::patch('/admin/verifiksi/{id}',[AC::class, 'verifikasi'])->name('admin.verifikasi');
-    Route::get('/admin/tolak/{id}',[AC::class, 'tolak'])->name('admin.tolak');
+    Route::patch('/admin/tolak/{id}',[AC::class, 'tolak'])->name('admin.tolak');
     Route::patch('/admin/batal/{id}',[AC::class, 'batal'])->name('admin.batal');
     Route::get('/admin/show/{id}', [AC::class, 'show'])->name('admin.show');
-    Route::get('/admin/wawancara', [AC::class, 'wawancara'])->name('admin.wawancara');
+    Route::get('/admin/wawancara/{id}', [AC::class, 'wawancara'])->name('admin.wawancara');
     Route::post('/admin/wawancara/store', [AC::class, 'store'])->name('admin.wawancara.store');
 
     Route::get('/admin/peserta/diterima', [PC::class, 'diterima'])->name('peserta.diterima');

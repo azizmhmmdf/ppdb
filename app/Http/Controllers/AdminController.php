@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Document;
 use App\Models\User;
+use App\Models\wawancara;
 use Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -45,7 +46,26 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            $request->all() => 'required'
+            'pertanyaan1' => 'required',
+            'pertanyaan2' => 'required',
+            'pertanyaan3' => 'required',
+            'pertanyaan4' => 'required',
+            'pertanyaan5' => 'required',
+            'pertanyaan6' => 'required',
+            'pertanyaan7' => 'required',
+            'pertanyaan8' => 'required',
+            'pertanyaan9' => 'required',
+            'pertanyaan10' => 'required',
+            'pertanyaan11' => 'required',
+            'pertanyaan12' => 'required',
+            'pertanyaan13' => 'required',
+            'pertanyaan14' => 'required',
+            'pertanyaan15' => 'required',
+            'pertanyaan16' => 'required',
+            'pertanyaan17' => 'required',
+            'pertanyaan18' => 'required',
+            'pertanyaan19' => 'required',
+            'pertanyaan20' => 'required'
         ]);
 
         $wawancara = wawancara::create($request->all());
@@ -102,6 +122,9 @@ class AdminController extends Controller
 
     public function verifikasi(Request $request, $id)
     {
+        $request->validate([
+            'tanggal_wawancara' => 'after_or_equal:tomorrow'
+        ]);
 
         $tanggal_wawancara = User::where('id', $id)->update([
             'tanggal_wawancara' => $request->tanggal_wawancara
@@ -158,38 +181,36 @@ class AdminController extends Controller
 
     }
 
-    // public function tolak($id)
-    // {
-    //     $data = User::where('id', $id)->first();
-    //     $status = $data->status;
-    //     if($status == 'diterima')
-    //     {
-    //         User::where('id', $id)->update([
-    //             'status' => 'ditolak'
-    //         ]);
-    //     }
-    //     elseif($status == 'diterima')
-    //     {
-    //         User::where('id', $id)->update([
-    //             'status' => 'ditolak'
-    //         ]);
-    //     }
-    //     elseif($status == 'belum')
-    //     {
-    //         User::where('id', $id)->update([
-    //             'status' => 'ditolak'
-    //         ]);
-    //     }
-    //     return redirect('/user/create');
-
-    // }
-
-    public function batal(Request $request, $id)
+    public function tolak(Request $request, $id)
     {
+        $request->validate([
+            'catatan'=>'required'
+        ]);
 
         $catatan = User::where('id', $id)->update([
             'catatan' => $request->catatan
         ]);
+
+        $data = User::where('id', $id)->first();
+        $status = $data->status;
+        if($status == 'belum')
+        {
+            User::where('id', $id)->update([
+                'status' => 'ditolak'
+            ]);
+        }
+        elseif($status == 'diverifikasi')
+        {
+            User::where('id', $id)->update([
+                'status' => 'ditolak'
+            ]);
+        }
+        return redirect('/user/create');
+
+    }
+
+    public function batal(Request $request, $id)
+    {
 
         $data = User::where('id', $id)->first();
         $status = $data->status;
@@ -237,8 +258,9 @@ class AdminController extends Controller
 
     }
 
-    public function wawancara()
+    public function wawancara($id)
     {
-        return view('admin.wawancara');
+        $user = User::find($id);
+        return view('admin.wawancara', compact('user'));
     }
 }

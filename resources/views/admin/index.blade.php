@@ -11,8 +11,8 @@
                 <div class="card shadow mb-4">
                     <div class="card-header bg-gradient text-white" id="gradient1">
                         <div class="form-row">
-                            <div class="form-group col-md-2 mt-4">
-                                <img src="{{asset('image/LOGO KEBANGSAAN.png')}}" width="130" height="130" class="text-center ml-5">
+                            <div class="form-group col-md-2 mt-4 ml-5">
+                                <img src="{{asset('image/LOGO KEBANGSAAN.png')}}" width="130" height="130" >
                             </div>
                             <div class="form-group col-md-9 mt-5">
                                 <strong>
@@ -96,7 +96,7 @@
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
-                                                                <form action="{{url('admin/batal/' . $usr->id)}}" method="post">
+                                                                <form action="{{url('admin/tolak/' . $usr->id)}}" method="post">
                                                                     @method('patch')
                                                                     @csrf
                                                                     <div class="modal-body">
@@ -139,7 +139,7 @@
                                                                             <div class="form-row">
                                                                                 <label for="formGroupExampleInput" >Tanggal Wawancara</label>
                                                                                 <div class="form-group col-md-12">
-                                                                                    <input type="date" class="form-control" id="tanggal_wawancara" name="tanggal_wawancara" placeholder="Example input">
+                                                                                    <input type="date" class="form-control" min="{{date('Y-m-d')}}" id="tanggal_wawancara" name="tanggal_wawancara" placeholder="Example input">
                                                                                 </div>
                                                                             </div>
                                                                         </div>

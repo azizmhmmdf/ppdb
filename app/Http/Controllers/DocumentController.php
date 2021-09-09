@@ -41,6 +41,7 @@ class DocumentController extends Controller
         return view('user.create');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
@@ -91,7 +92,6 @@ class DocumentController extends Controller
     {
         $user = User::where('nisn', Auth::user()->nisn )->first();
         $document = Document::where('nisn', Auth::user()->nisn)->first();
-
 
         return view('user.document', compact('document', 'user'));
     }
@@ -178,6 +178,5 @@ class DocumentController extends Controller
     {
         $informasi =  User::where('nisn', Auth::user()->nisn )->first();
         return view('user.informasi', compact('informasi'));
-
     }
 }

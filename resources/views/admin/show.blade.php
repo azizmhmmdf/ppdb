@@ -25,7 +25,15 @@
                             </div>
                         </div>
                         <div>
-                            <a href="/user/create" class="btn btn-primary ml-3 mt-2">Kembali</a>
+                            @if ($admin->status == 'belum')
+                                <a href="/user/create" class="btn btn-primary ml-3 mt-2">Kembali</a>
+                            @elseif ($admin->status == 'ditolak')
+                                <a href="/admin/peserta/ditolak" class="btn btn-primary ml-3 mt-2">Kembali</a>
+                            @elseif ($admin->status == 'diterima')
+                                <a href="/admin/peserta/diterima" class="btn btn-primary ml-3 mt-2">Kembali</a>
+                            @elseif ($admin->status == 'diverifikasi')
+                                <a href="/admin/peserta/diverifikasi" class="btn btn-primary ml-3 mt-2">Kembali</a>
+                            @endif
                         </div>
                         @if (session('status'))
                         <div class="alert alert-success">

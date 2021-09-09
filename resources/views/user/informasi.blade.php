@@ -10,7 +10,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-2 mt-4 ml-3"></div>
                             <div class="form-group col-md-9 mt-4">
-                                @if($informasi->status == 'diterima')
+                                @if($informasi->status == 'diverifikasi')
                                     <strong>
                                         <h1 class="font text-center">
                                             SELAMAT ANDA LOLOS TAHAP AWAL

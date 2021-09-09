@@ -1,6 +1,5 @@
 @extends('layout.main')
-@sectio
-n('title', 'SMK WIKRAMA 1 GARUT')
+@section('title', 'SMK WIKRAMA 1 GARUT')
 
 @section('content')
 <div class="container-fluid mt-3">

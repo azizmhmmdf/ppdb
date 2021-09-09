@@ -15,7 +15,7 @@ class CreateWawancarasTable extends Migration
     {
         Schema::create('wawancaras', function (Blueprint $table) {
             $table->id();
-            $table->string('id_wawancara');
+            $table->string('id_wawancara')->nullable();
             $table->string('pertanyaan1');
             $table->string('pertanyaan2');
             $table->string('pertanyaan3');

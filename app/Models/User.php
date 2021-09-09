@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Document;
+use Illuminate\Support\Carbon;
 
 class User extends Authenticatable
 {
@@ -62,5 +63,9 @@ class User extends Authenticatable
     public function wawancara()
     {
         return $this->hasOne(wawancara::class, 'id_wawancara', 'id');
+    }
+
+    public function FormatTanggal(){
+        return Carbon::parse($this->attributes['tanggal_wawancara'])->translatedFormat('I, D F Y');
     }
 }

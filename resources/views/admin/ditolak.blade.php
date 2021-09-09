@@ -11,8 +11,8 @@
                 <div class="card shadow mb-4">
                     <div class="card-header bg-gradient text-white" id="gradient1">
                         <div class="form-row">
-                            <div class="form-group col-md-2 mt-4">
-                                <img src="{{asset('image/LOGO KEBANGSAAN.png')}}" width="130" height="130" class="text-center ml-5">
+                            <div class="form-group col-md-2 mt-4 ml-5">
+                                <img src="{{asset('image/LOGO KEBANGSAAN.png')}}" width="130" height="130">
                             </div>
                             <div class="form-group col-md-9 mt-5">
                                 <strong>

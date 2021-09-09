@@ -10,4 +10,5 @@ class wawancara extends Model
     use HasFactory;
     protected $table = 'wawancaras';
     protected $guarded = ['created_at', 'updated_at'];
+
 }

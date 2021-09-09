@@ -28,6 +28,7 @@
                                         <th>SKHUN</th>
                                         <th>IJAZAH</th>
                                         <th>STATUS</th>
+                                        <th>CATATAN</th>
                                         <th>AKSI</th>
                                     </tr>
                                 </thead>
@@ -54,6 +55,13 @@
                                                     </span>
                                                 @else
                                                         Tunggu Konfirmasi !
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($user->status == 'ditolak')
+                                                    {{$user->catatan}}
+                                                @else
+                                                    Tidak Ada Catatan
                                                 @endif
                                             </td>
                                             <td>
